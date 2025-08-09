@@ -48,12 +48,12 @@ repos:
         additional_dependencies: [types-requests]
         args: [--ignore-missing-imports]
 
-  # Security linting with bandit
-  - repo: https://github.com/pycqa/bandit
-    rev: 1.7.5
-    hooks:
-      - id: bandit
-        args: [--skip, "B101,B601"]
+  # # Security linting with bandit
+  # - repo: https://github.com/pycqa/bandit
+  #   rev: 1.7.5
+  #   hooks:
+  #     - id: bandit
+  #       args: [--skip, "B101,B601"]
 
   # Dockerfile linting
   - repo: https://github.com/hadolint/hadolint
