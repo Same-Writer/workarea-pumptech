@@ -22,7 +22,7 @@ except ImportError:
 
 
 # Load configuration from environment variables
-def load_env_file(filepath: str = ".env"):
+def load_env_file(filepath: str = ".env") -> None:
     """Load environment variables from .env file."""
     if os.path.exists(filepath):
         with open(filepath, "r") as file:
@@ -122,7 +122,7 @@ class InfluxWriter:
             logger.error(f"Failed to write data: {e}")
             return False
 
-    def close(self):
+    def close(self) -> None:
         """Close the InfluxDB connection."""
         if self.client:
             self.client.close()
@@ -146,7 +146,7 @@ def wait_for_influxdb(writer: InfluxWriter, max_retries: int = 30) -> bool:
     return False
 
 
-def main():
+def main() -> None:
     """Main function to run the data writer."""
     logger.info("Starting InfluxDB Writer")
 
