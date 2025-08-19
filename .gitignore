@@ -1,6 +1,12 @@
+# Config Files
 .env
 influx-configs
+
+# Environment
 uv.lock
-__pycache__
 venv
 .venv
+
+# Cache Files
+__pycache__
+.mypy_cache
