@@ -191,11 +191,11 @@ from(bucket: "pumptest")
 #### Temperature Value Distribution (Last 24 Hours)
 ```flux
 from(bucket: "pumptest")
-  |> range(start: -24h)
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
   |> filter(fn: (r) => r["_measurement"] == "sensors")
   |> filter(fn: (r) => r["sensor_type"] == "temperature")
   |> filter(fn: (r) => r["_field"] == "value")
-  |> histogram(bins: [15.0, 17.0, 19.0, 21.0, 23.0, 25.0, 27.0, 29.0, 31.0])
+  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
   |> yield(name: "temperature_histogram")
 ```
 
@@ -204,12 +204,12 @@ from(bucket: "pumptest")
 #### Pressure Value Distribution
 ```flux
 from(bucket: "pumptest")
-  |> range(start: -24h)
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
   |> filter(fn: (r) => r["_measurement"] == "sensors")
   |> filter(fn: (r) => r["sensor_type"] == "pressure")
   |> filter(fn: (r) => r["_field"] == "value")
-  |> histogram(bins: [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0])
-  |> yield(name: "pressure_histogram")
+  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+  |> yield(name: "temperature_histogram")
 ```
 
 ### 3. Flow Rate Distribution
